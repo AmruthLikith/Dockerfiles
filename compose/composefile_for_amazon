@@ -1,0 +1,32 @@
+---
+version: "2.2"
+
+services:
+  amazon1:
+    build:
+      context: /home/azureuser/Dockerfile/
+    image: amazon_com:1.0
+    ports:
+      - "8095:8080"
+    volumes:
+      - testvolume:/home
+    networks:
+      - demobridge
+
+  amazon2:
+    build:
+      context: /home/azureuser/Dockerfile/
+    image: amazon_com2:2.0
+    ports:
+      - "8096:8080"
+    volumes:
+      - testvolume:/home
+    networks:
+      - demobridge
+
+volumes:
+  testvolume:
+    external: true
+
+networks:
+  demobridge: {}
